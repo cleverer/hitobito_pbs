@@ -45,6 +45,7 @@ module HitobitoPbs
       Export::Csv::Events::BsvRow.send :include, Pbs::Export::Csv::Events::BsvRow
 
       ### abilities
+      Ability.store.register Event::ApprovalAbility
       GroupAbility.send :include, Pbs::GroupAbility
       EventAbility.send :include, Pbs::EventAbility
       EventAbility.send :include, Pbs::Event::Constraints
@@ -70,7 +71,6 @@ module HitobitoPbs
       RolesController.send :include, Pbs::RolesController
       GroupsController.send :include, Pbs::GroupsController
       EventsController.send :include, Pbs::EventsController
-      Event::ApplicationsController.send :include, Pbs::Event::ApplicationsController
       Event::ApplicationMarketController.send :include, Pbs::Event::ApplicationMarketController
       Event::ListsController.send :include, Pbs::Event::ListsController
       Event::ParticipationsController.send :include, Pbs::Event::ParticipationsController
