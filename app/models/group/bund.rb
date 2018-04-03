@@ -46,7 +46,8 @@ class Group::Bund < Group
 
   children Group::Kantonalverband,
            Group::Ausbildungskommission,
-           Group::BundesGremium
+           Group::BundesGremium,
+           Group::BundesKommission
 
   ### INSTANCE METHODS
 
@@ -143,7 +144,7 @@ class Group::Bund < Group
   end
 
   class MitarbeiterGs < ::Role
-    self.permissions = [:layer_and_below_full, :contact_data, :admin]
+    self.permissions = [:layer_and_below_full, :contact_data, :admin, :impersonation]
   end
 
   class MitgliedKrisenteam < ::Role

@@ -47,8 +47,28 @@ class Group::Region < Group
   children Group::Region,
            Group::Abteilung,
            Group::RegionaleRover,
-           Group::RegionalesGremium
+           Group::RegionalesGremium,
+           Group::RegionaleKommission
 
+  has_many :member_counts
+
+  ### INSTANCE METHODS
+
+  def kantonalverband
+    ancestors.find_by(type: Group::Kantonalverband.sti_name)
+  end
+
+  def census_total(year)
+    MemberCount.total_by_regionen(year, kantonalverband).find_by(region_id: id)
+  end
+
+  def census_groups(year)
+    MemberCount.total_by_abteilungen(year, self)
+  end
+
+  def census_details(year)
+    MemberCount.details_for_region(year, self)
+  end
 
   ### ROLES
 
