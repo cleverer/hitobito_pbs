@@ -38,6 +38,7 @@ module HitobitoPbs
       Bsv::Info.leader_roles += [Event::Course::Role::Helper]
       Export::Pdf::Participation.runner = Pbs::Export::Pdf::Participation::Runner
       Event::ParticipantAssigner.send :include, Pbs::Event::ParticipantAssigner
+      Event::Filter.send :include, Pbs::Event::Filter
       Export::Tabular::Events::List.send :include, Pbs::Export::Tabular::Events::List
       Export::Tabular::Events::Row.send :include, Pbs::Export::Tabular::Events::Row
       Export::Tabular::People::ParticipationsFull.send(
@@ -72,6 +73,11 @@ module HitobitoPbs
       Event::RoleAbility.send :include, Pbs::Event::Constraints
       QualificationAbility.send :include, Pbs::QualificationAbility
       VariousAbility.send :include, Pbs::VariousAbility
+
+
+      ### decorators
+      EventDecorator.send :include, Pbs::EventDecorator
+      ContactableDecorator.send :include, Pbs::ContactableDecorator
 
       ### serializers
       PersonSerializer.send :include, Pbs::PersonSerializer
